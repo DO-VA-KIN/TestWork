@@ -1,0 +1,20 @@
+﻿<Window x:Class="DataAnalyzer.UserControls.DialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataAnalyzer.UserControls"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Topmost="True" AllowsTransparency="True" Background="Transparent" WindowStyle="None" Height="200" Width="300" MouseDown="Window_MouseDown" Loaded="Window_Loaded">
+    <Grid>
+        <GroupBox x:Name="GBForm" Header="---">
+            <Grid>
+                <TextBlock x:Name="TBMessage" Background="AliceBlue" Foreground="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,30" TextWrapping="Wrap" Text="Да..., а может быть и нет...." FontFamily="Times New Roman" FontSize="13"/>
+                <Button x:Name="BtnYes" Content="Да" Height="22" Width="50" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Visible" Margin="0,0,50,3" Click="BtnYes_Click"/>
+                <Button x:Name="BtnNo" Content="Нет" Height="22" Width="50" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Visible" Margin="50,0,0,3" Click="BtnNo_Click"/>
+                <Button x:Name="BtnOK" Content="ОК" Height="22" Width="40" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Collapsed" Margin="0,0,0,3" Click="BtnOK_Click"/>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Window>

@@ -1,0 +1,229 @@
+
+<structure name="Тестовая структура"> 
+<frame name="Кадр 1">
+	<item>
+		<size>5</size>
+		<name>Маркер</name>
+		<type>static</type>
+		<data>7C 6E A1 2C FA</data>
+	</item> 
+	<item>
+		<size>4</size>
+		<name>Номер пакета</name>
+		<type>frame_increment</type>	
+	</item>
+	<item>
+		<size>2037</size>
+		<name>Данные</name>
+	</item>
+	<item>
+		<size>2</size>
+		<name>CRC</name>
+		<type>crc</type>
+	</item>
+</frame>
+
+<frame name="Кадр 2">
+	<item>
+		<size>5</size>
+		<name>Маркер</name>
+		<type>static</type>
+		<data>7C 6E A1 2D 00</data>
+	</item> 
+	<item>
+		<size>4</size>
+		<name>Номер пакета</name>
+		<type>frame_increment</type>	
+	</item>
+	<item>
+		<size>2037</size>
+		<name>Данные</name>
+	</item>
+	<item>
+		<size>2</size>
+		<name>CRC</name>
+		<type>crc</type>
+	</item>
+</frame>
+
+<frame name="Кадр 3">
+	<item>
+		<size>5</size>
+		<name>Маркер</name>
+		<type>static</type>
+		<data>7C 6E A1 2D 01</data>
+	</item> 
+	<item>
+		<size>4</size>
+		<name>Номер пакета</name>
+		<type>frame_increment</type>	
+	</item>
+	<item>
+		<size>2037</size>
+		<name>Данные</name>
+	</item>
+	<item>
+		<size>2</size>
+		<name>CRC</name>
+		<type>crc</type>
+	</item>
+</frame>
+
+<frame name="Кадр 4">
+	<item>
+		<size>5</size>
+		<name>Маркер</name>
+		<type>static</type>
+		<data>7C 6E A1 2D 02</data>
+	</item> 
+	<item>
+		<size>4</size>
+		<name>Номер пакета</name>
+		<type>frame_increment</type>	
+	</item>
+	<item>
+		<size>2037</size>
+		<name>Данные</name>
+	</item>
+	<item>
+		<size>2</size>
+		<name>CRC</name>
+		<type>crc</type>
+	</item>
+</frame>
+
+<frame name="Кадр 5">
+	<item>
+		<size>5</size>
+		<name>Маркер</name>
+		<type>static</type>
+		<data>7C 6E A1 2D 03</data>
+	</item> 
+	<item>
+		<size>4</size>
+		<name>Номер пакета</name>
+		<type>frame_increment</type>	
+	</item>
+	<item>
+		<size>2037</size>
+		<name>Данные</name>
+	</item>
+	<item>
+		<size>2</size>
+		<name>CRC</name>
+		<type>crc</type>
+	</item>
+</frame>
+
+<frame name="Кадр 6">
+	<item>
+		<size>5</size>
+		<name>Маркер</name>
+		<type>static</type>
+		<data>7C 6E A1 2D 04</data>
+	</item> 
+	<item>
+		<size>4</size>
+		<name>Номер пакета</name>
+		<type>frame_increment</type>	
+	</item>
+	<item>
+		<size>2037</size>
+		<name>Данные</name>
+	</item>
+	<item>
+		<size>2</size>
+		<name>CRC</name>
+		<type>crc</type>
+	</item>
+</frame>
+	
+<frame name="Кадр 7">
+	<item>
+		<size>5</size>
+		<name>Маркер</name>
+		<type>static</type>
+		<data>7C 6E A1 2D 05</data>
+	</item> 
+	<item>
+		<size>4</size>
+		<name>Номер пакета</name>
+		<type>frame_increment</type>	
+	</item>
+	<item>
+		<size>2037</size>
+		<name>Данные</name>
+	</item>
+	<item>
+		<size>2</size>
+		<name>CRC</name>
+		<type>crc</type>
+	</item>
+</frame>
+
+<frame name="Кадр 8">
+	<item>
+		<size>5</size>
+		<name>Маркер</name>
+		<type>static</type>
+		<data>7C 6E A1 2D 06</data>
+	</item> 
+	<item>
+		<size>4</size>
+		<name>Номер пакета</name>
+		<type>frame_increment</type>	
+	</item>
+	<item>
+		<size>2037</size>
+		<name>Данные</name>
+	</item>
+	<item>
+		<size>2</size>
+		<name>CRC</name>
+		<type>crc</type>
+	</item>
+</frame>
+
+<frame name="Кадр 9">
+	<item>
+		<size>4</size>
+		<name>Маркер</name>
+		<type>static</type>
+		<data>7C 6E A1 2F</data>
+	</item> 
+	<item>
+		<size>4</size>
+		<name>Номер пакета</name>
+		<type>frame_increment</type>	
+	</item>
+	<item>
+		<size>2038</size>
+		<name>Данные</name>
+	</item>
+	<item>
+		<size>2</size>
+		<name>CRC</name>
+		<type>crc</type>
+	</item>
+</frame>
+
+<frame name="Кадр 10">
+	<item>
+		<size>4</size>
+		<name>Маркер</name>
+		<type>static</type>
+		<data>7C 6E A1 30</data>
+	</item> 
+	<item>
+		<size>2040</size>
+		<name>Данные</name>
+	</item>
+	<item>
+		<size>2</size>
+		<name>CRC</name>
+		<type>crc</type>
+	</item>
+</frame>
+
+</structure>
+

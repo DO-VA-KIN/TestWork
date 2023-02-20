@@ -1,0 +1,12 @@
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\API\bin\Debug\API.dll
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\API\bin\Debug\API.pdb
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\API\obj\Debug\API.csproj.CoreCompileInputs.cache
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\API\obj\Debug\API.dll
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\API\obj\Debug\API.pdb
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\API\obj\Debug\API.csprojAssemblyReference.cache
+B:\Projects\дз\DataAnalyzer\API\obj\Debug\API.csproj.AssemblyReference.cache
+B:\Projects\дз\DataAnalyzer\API\obj\Debug\API.csproj.CoreCompileInputs.cache
+B:\Projects\дз\DataAnalyzer\API\obj\Debug\API.dll
+B:\Projects\дз\DataAnalyzer\API\obj\Debug\API.pdb
+B:\Projects\дз\DataAnalyzer\API\bin\Debug\API.dll
+B:\Projects\дз\DataAnalyzer\API\bin\Debug\API.pdb

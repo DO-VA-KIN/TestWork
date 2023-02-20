@@ -1,0 +1,71 @@
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\bin\Debug\DataAnalyzer.exe.config
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\bin\Debug\DataAnalyzer.exe
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\bin\Debug\DataAnalyzer.pdb
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\Client.csprojAssemblyReference.cache
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\Button.baml
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\ComboBox.baml
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\GroupBox.baml
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\Menu.baml
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\ProgressBar.baml
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\TabControl.baml
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\TabItem.baml
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\TextBox.baml
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\ToolTip.baml
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\TreeView.baml
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\MainWindow.g.cs
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\UserControls\UIProcess.g.cs
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\App.g.cs
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\DataAnalyzer_MarkupCompile.cache
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\DataAnalyzer_MarkupCompile.lref
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\App.baml
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\MainWindow.baml
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\UserControls\UIProcess.baml
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\DataAnalyzer.g.resources
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\DataAnalyzer.Properties.Resources.resources
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\Client.csproj.GenerateResource.cache
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\DataAnalyzer.exe
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\DataAnalyzer.pdb
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\bin\Debug\API.dll
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\bin\Debug\API.pdb
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\Client.csproj.CopyComplete
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\UserControls\ExMessage.g.cs
+C:\Users\pressF\Documents\Visual Studio 2017\Projects\DataAnalyzer\DataAnalyzer\obj\Debug\UserControls\ExMessage.baml
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\bin\Debug\DataAnalyzer.exe.config
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\bin\Debug\DataAnalyzer.exe
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\bin\Debug\DataAnalyzer.pdb
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\bin\Debug\API.dll
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\bin\Debug\API.pdb
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\Client.csproj.AssemblyReference.cache
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\Client.csproj.SuggestedBindingRedirects.cache
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\Button.baml
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\ComboBox.baml
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\GroupBox.baml
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\Menu.baml
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\ProgressBar.baml
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\TabControl.baml
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\TabItem.baml
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\TextBox.baml
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\ToolTip.baml
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\Themes\TreeView.baml
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\MainWindow.g.cs
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\UserControls\ExMessage.g.cs
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\UserControls\UIProcess.g.cs
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\App.g.cs
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\GeneratedInternalTypeHelper.g.cs
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\DataAnalyzer_MarkupCompile.cache
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\DataAnalyzer_MarkupCompile.lref
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\App.baml
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\MainWindow.baml
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\UserControls\ExMessage.baml
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\UserControls\UIProcess.baml
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\DataAnalyzer.g.resources
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\DataAnalyzer.Properties.Resources.resources
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\Client.csproj.GenerateResource.cache
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\Client.csproj.CoreCompileInputs.cache
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\Client.csproj.CopyComplete
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\DataAnalyzer.exe
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\DataAnalyzer.pdb
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\UserControls\DialogWindow.g.cs
+B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\UserControls\DialogWindow.baml

@@ -1,0 +1,34 @@
+﻿<Window x:Class="DataAnalyzer.UserControls.ExMessage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataAnalyzer.UserControls"
+        mc:Ignorable="d"
+        x:Name="WMessage"
+        Title="Сведения об ошибке" Height="300" Width="500" Loaded="WMessage_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <TreeView x:Name="TVTree" FontSize="14" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0">
+            <TreeViewItem Header="HelpLink" Selected="TVTree_ItemSelected"/>
+            <TreeViewItem Header="HResult" Selected="TVTree_ItemSelected"/>
+            <TreeViewItem Header="Message" Selected="TVTree_ItemSelected"/>
+            <TreeViewItem Header="Source" Selected="TVTree_ItemSelected"/>
+            <TreeViewItem Header="StackTrace" Selected="TVTree_ItemSelected"/>
+        </TreeView>
+        <GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1"/>
+        <GroupBox Grid.Row="0" Grid.Column="2" Margin="0,0,0,0">
+            <TextBlock x:Name="TBText" Text="None" TextWrapping="Wrap"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="3,3,3,3"/>
+        </GroupBox>
+
+    </Grid>
+</Window>
