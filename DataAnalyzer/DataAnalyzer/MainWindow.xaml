@@ -7,7 +7,7 @@
         xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
         xmlns:UserControls="clr-namespace:DataAnalyzer.UserControls" x:Class="DataAnalyzer.MainWindow"
         mc:Ignorable="d"
-        Title="Анализатор данных (v.1.0)" Height="500" Width="800">
+        Title="Анализатор данных (v.1.0)" Height="500" Width="800" Icon="/Icons/IMG_0200.PNG">
 
     <Window.Background>
         <LinearGradientBrush EndPoint="0,1" StartPoint="0,0" Opacity="0.2">
@@ -66,12 +66,10 @@
         <Button x:Name="BtnConfigFileXML" Content="Конфигурация" ToolTip="Выбор файла xml c кадровой структурой" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Margin="5,2,5,2" Click="BtnConfigFileXML_Click"/>
         <Button x:Name="BtnDataFile" Content="Данные" ToolTip="Выбор файла c данными" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="2" Margin="5,2,5,2" Click="BtnDataFile_Click"/>
 
-        <DataGrid x:Name="DGFrames" HeadersVisibility="None" FontFamily="Times New Roman" Background="LightGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="True" CanUserReorderColumns="False" IsReadOnly="True" SelectionMode="Single" CanUserResizeColumns="False" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0"/>
+        <DataGrid x:Name="DGFrames" AlternatingRowBackground="LightGray" FontFamily="Times New Roman" FontSize="14" HeadersVisibility="None" HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionMode="Single" AutoGenerateColumns="True" ItemsSource="{Binding}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"/>
 
         <GroupBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0">
             <local:UIProcess x:Name="UIPStatus"/>
         </GroupBox>
-       
-        
     </Grid>
 </Window>

@@ -19,9 +19,9 @@ namespace DataAnalyzer.UserControls
     /// </summary>
     public partial class DialogWindow : Window
     {
-        private static string Message { get; set; }
-        private static string Header { get; set; }
-        private static int Mode { get; set; }
+        private string Message { get; set; }
+        private string Header { get; set; }
+        private int Mode { get; set; }
 
         /// <summary>
         /// Свой MessageBox. Принимает выводимый текст, текст заголовка и режим диалога.
@@ -30,7 +30,6 @@ namespace DataAnalyzer.UserControls
         public DialogWindow(string message, int mode)
         {
             InitializeComponent();
-            //Header = "";
             Message = message;
             Mode = mode;
         }

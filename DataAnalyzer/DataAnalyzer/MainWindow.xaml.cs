@@ -42,6 +42,7 @@ namespace DataAnalyzer
             switch (menuItem.Header)
             {
                 case "Файлы":
+                    e.Handled = true;
                     if (menuItem.IsChecked)
                     {
                         GridRow1.Height = new GridLength(0, GridUnitType.Pixel);
@@ -54,9 +55,10 @@ namespace DataAnalyzer
                     }
                     break;
                 case "Таблица":
-
+                    e.Handled = true;
                     break;
                 case "Статус":
+                    e.Handled = true;
                     if (menuItem.IsChecked)
                     {
                         GridRow3.Height = new GridLength(0, GridUnitType.Pixel);
@@ -93,8 +95,7 @@ namespace DataAnalyzer
                     Process.Start(Environment.CurrentDirectory);
                     break;
                 case "Справка":
-                    MessageBox.Show("Hello world, hello-hello-hello world,\nЯ автоматизирую как завещал нам Генри Форд!", "Written by GHOST?",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    new DialogWindow("Hello world, hello-hello-hello world,\nЯ автоматизирую как завещал нам Генри Форд!", "Written by GHOST?", 0).Show();
                     break;
             }
         }
@@ -131,18 +132,26 @@ namespace DataAnalyzer
                 Filter = "Файл |*cnt64; *dat;"
             };
 
-            if (ofd.ShowDialog() == true)
+            if (BackProcess.IsBusy()) 
             {
-                API.FrameAnalize.WayFile = ofd.FileName;
-                API.FrameAnalize.Analize();
-            }
-                //BackProcess back = new BackProcess(UIPStatus);
-                //if (!back.StartWork())
-                //{
-                //    new ExMessage(back.GetException()).Show();
-                //}
+                if (new DialogWindow("Прервать проверку?", 1).ShowDialog() == true)
+                {
+                    BackProcess.CancelAsync();
+                    return;
+                }
             }
 
+            if (ofd.ShowDialog() == true)
+            {
+                BackProcess back = new BackProcess(UIPStatus, DGFrames, BtnDataFile);
+                if (!back.StartWork(ofd.FileName))
+                {
+                    new ExMessage(BackProcess.GetException()).Show();
+                }
+
+            }
+
+        }
 
 
 

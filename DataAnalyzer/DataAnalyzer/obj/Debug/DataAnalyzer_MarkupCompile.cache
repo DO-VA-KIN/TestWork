@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-B:\Projects\дз\DataAnalyzer\DataAnalyzer\obj\Debug\
+B:\Projects\дз\ТестЗадание\DataAnalyzer\DataAnalyzer\obj\Debug\
 DataAnalyzer
 none
 false
 DEBUG;TRACE
-B:\Projects\дз\DataAnalyzer\DataAnalyzer\App.xaml
+B:\Projects\дз\ТестЗадание\DataAnalyzer\DataAnalyzer\App.xaml
 14-2058906659
 
 91732970995
-15-1306326713
+15-2067424902
 MainWindow.xaml;Themes\Button.xaml;Themes\ComboBox.xaml;Themes\GroupBox.xaml;Themes\Menu.xaml;Themes\ProgressBar.xaml;Themes\TabControl.xaml;Themes\TabItem.xaml;Themes\TextBox.xaml;Themes\ToolTip.xaml;Themes\TreeView.xaml;UserControls\DialogWindow.xaml;UserControls\ExMessage.xaml;UserControls\UIProcess.xaml;
 
 False

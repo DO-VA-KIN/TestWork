@@ -10,3 +10,9 @@ B:\Projects\дз\DataAnalyzer\API\obj\Debug\API.dll
 B:\Projects\дз\DataAnalyzer\API\obj\Debug\API.pdb
 B:\Projects\дз\DataAnalyzer\API\bin\Debug\API.dll
 B:\Projects\дз\DataAnalyzer\API\bin\Debug\API.pdb
+B:\Projects\дз\ТестЗадание\DataAnalyzer\API\bin\Debug\API.dll
+B:\Projects\дз\ТестЗадание\DataAnalyzer\API\bin\Debug\API.pdb
+B:\Projects\дз\ТестЗадание\DataAnalyzer\API\obj\Debug\API.csproj.AssemblyReference.cache
+B:\Projects\дз\ТестЗадание\DataAnalyzer\API\obj\Debug\API.csproj.CoreCompileInputs.cache
+B:\Projects\дз\ТестЗадание\DataAnalyzer\API\obj\Debug\API.dll
+B:\Projects\дз\ТестЗадание\DataAnalyzer\API\obj\Debug\API.pdb

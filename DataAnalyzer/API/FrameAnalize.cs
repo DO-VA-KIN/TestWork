@@ -41,7 +41,7 @@ namespace API
         /// <summary>
         ///Размер выделяемой памяти для считывания
         /// </summary>
-        public static int BuffSize { get; set; } = 2048;
+        public static int BuffSize { get; set; } = 512;
 
         private static Exception LastException { get; set; }
         /// <summary>
@@ -73,7 +73,7 @@ namespace API
         { return Errors; }
 
         /// <summary>
-        /// Проверка заданных кадровых структур(Frames) в указанном файле (WayFile)
+        /// Проверка заданных кадровых структур(Frames) в указанном файле(WayFile)
         /// </summary>
         /// <returns></returns>
         public static bool Analize()
@@ -89,8 +89,10 @@ namespace API
             }
 
 
-            //try
-            //{
+            try
+            {
+                CRC crcChecker = new CRC();
+
                 Errors = new Dictionary<string, Report>(Frames.Length);
                 byte[] buff = new byte[BuffSize];
 
@@ -98,169 +100,167 @@ namespace API
                 Frame lFrame = new Frame();
                 Item lItemMarker = new Item();
                 Item lItemIncrement = new Item();
-                //Dictionary<string, Item> lastIncrements = new Dictionary<string, Item>();//последние найденые счетчики 
-                //(сперва предположил что у каждого типа кадра свой счётчик)
-                long? lastIncrement = null;//последний счётчик
+                Dictionary<string, Item> lastIncrements = new Dictionary<string, Item>();//последние найденые счетчики 
 
-            using (FileStream stream = File.Open(WayFile, FileMode.Open))
-            {
-                bool isEnd = false;//текущий массив buff последний на обработку (крайние байты)
-
-                for (int i = 0; /*i < buff.Length || */stream.Position + i < stream.Length; i++)
+                using (FileStream stream = File.Open(WayFile, FileMode.Open))
                 {
-                    int minSize = 0;// минимальный необходимый размер для считывания маркера и счётчика
+                    long oldPosition = stream.Position;//для передачи прогресса
+                    bool isEnd = false;//текущий массив buff последний на обработку (крайние байты)
 
-                    stream.Read(buff, 0, buff.Length);
-                    stream.Position -= buff.Length;
-
-                    bool isFind = false;
-                    bool reRead = false;
-
-                    foreach (Frame frame in lFrames)
+                    for (int i = 0; /*i < buff.Length || */stream.Position + i < stream.Length; i++)
                     {
+                        int minSize = 0;// минимальный необходимый размер для считывания маркера и счётчика
 
-                        foreach (Item item in frame.Items)
+                        stream.Read(buff, 0, buff.Length);
+                        stream.Position -= buff.Length;
+
+                        bool isFind = false;
+                        bool reRead = false;
+
+                        foreach (Frame frame in lFrames)
                         {
-                            if (item.Name == "Маркер")
+
+                            foreach (Item item in frame.Items)
                             {
-                                minSize += (int)item.Size;
-                                lItemMarker = item;
-                                break;
-                            }
-                        }
-                        foreach (Item item in frame.Items)
-                        {
-                            if (item.Name == "Номер пакета")
-                            {
-                                minSize += (int)item.Size;
-                                lItemIncrement = item;
-                                break;
-                            }
-                        }
-                        if (i + minSize > buff.Length - 1)//массив buff почти перебрали
-                        {
-                            reRead = true;
-                            break;
-                        }
-
-                        byte[] lBuff = new byte[(int)lItemMarker.Size];
-                        for (int j = 0; j < lBuff.Length; j++)
-                        { lBuff[j] = buff[i + j]; }
-
-
-
-                        if (lBuff.SequenceEqual(lItemMarker.Data))
-                        {
-                            isFind = true;
-                            lFrame = frame;
-                            if (!lFrames[0].Equals(lFrame))
-                                Funcs<Frame>.MoveToFirst(ref lFrames, lFrame);//чтобы начать перебор с того же типа кадра 
-                            if (!Errors.ContainsKey(lFrame.Name))
-                            {
-                                Report report = new Report
+                                if (item.Name == "Маркер")
                                 {
-                                    FrameCount = 1,
-                                    ErrorNumberCount = 0,
-                                    ErrorCRCCount = 0
-                                };
-                                Errors.Add(lFrame.Name, report);
+                                    minSize += (int)item.Size;
+                                    lItemMarker = item;
+                                    break;
+                                }
                             }
-                            else
+                            foreach (Item item in frame.Items)
                             {
-                                Report f = Errors[lFrame.Name];
-                                f.FrameCount++;
-                                Errors[lFrame.Name] = f;
+                                if (item.Name == "Номер пакета")
+                                {
+                                    minSize += (int)item.Size;
+                                    lItemIncrement = item;
+                                    break;
+                                }
                             }
-                        }
-                        if (isFind) break;
-                    }
-
-                    if (isFind)
-                    {
-                        byte[] lBuff = new byte[(int)lItemIncrement.Size];
-                        for (int j = 0; j < lBuff.Length; j++)
-                        { lBuff[j] = buff[i + (int)lItemMarker.Size + j]; }
-
-                        lItemIncrement.Data = lBuff;
-                        if (lastIncrements.ContainsKey(lFrame.Name))
-                        {
-                            if (lastIncrements[lFrame.Name].Data != null)
+                            if (i + minSize > buff.Length - 1)//массив buff почти перебрали
                             {
-                                ulong vLast = BitConverter.ToUInt32(lastIncrements[lFrame.Name].Data, 0);
-                                ulong vNext = BitConverter.ToUInt32(lItemIncrement.Data, 0);
-                                if (vNext - vLast != 1)
+                                reRead = true;
+                                break;
+                            }
+
+                            byte[] lBuff = new byte[(int)lItemMarker.Size];
+                            for (int j = 0; j < lBuff.Length; j++)
+                            { lBuff[j] = buff[i + j]; }
+
+
+
+                            if (lBuff.SequenceEqual(lItemMarker.Data))
+                            {
+                                isFind = true;
+                                lFrame = frame;
+                                if (!lFrames[0].Equals(lFrame))
+                                    Funcs<Frame>.MoveToFirst(ref lFrames, lFrame);//чтобы начать перебор с того же типа кадра 
+                                if (!Errors.ContainsKey(lFrame.Name))
+                                {
+                                    Report report = new Report
+                                    {
+                                        FrameCount = 1,
+                                        ErrorNumberCount = 0,
+                                        ErrorCRCCount = 0
+                                    };
+                                    Errors.Add(lFrame.Name, report);
+                                }
+                                else
                                 {
                                     Report f = Errors[lFrame.Name];
-                                    f.ErrorNumberCount++;
+                                    f.FrameCount++;
                                     Errors[lFrame.Name] = f;
                                 }
                             }
+                            if (isFind) break;
                         }
-                        lastIncrements[lFrame.Name] = lItemIncrement;
-                    }
 
-
-
-                    if ((i > buff.Length / MinPartOfReadSize || buff.Length - i < MinReadSize || reRead) && !isEnd)//возврат к перепрочтению
-                    {
-                        //дописать выход (когда байт осталось меньше чем маркер + счетчик)
-                        if (reRead)
-                            i -= minSize;
-                        stream.Position += i;
-                        i = 0;
-                        if (buff.Length > stream.Length - stream.Position)
+                        if (isFind)
                         {
-                            buff = new byte[(int)(stream.Length - stream.Position)];
-                            isEnd = true;
-                        }
-                        else { buff = new byte[BuffSize]; }
-                    }
-                    if (isFind)
-                    {
-                        foreach (Item item in lFrame.Items)
-                        {
-                            if (item.Size != null && item.Name != "CRC")
+                            byte[] lBuff = new byte[(int)lItemIncrement.Size];
+                            for (int j = 0; j < lBuff.Length; j++)
+                            { lBuff[j] = buff[i + (int)lItemMarker.Size + j]; }
+
+                            lItemIncrement.Data = lBuff;
+                            if (lastIncrements.ContainsKey(lFrame.Name))
                             {
-                                stream.Position += (int)item.Size;
+                                if (lastIncrements[lFrame.Name].Data != null)
+                                {
+                                    if (!Funcs.CheckIncrement(lastIncrements[lFrame.Name].Data, lItemIncrement.Data, 1, true))
+                                    {
+                                        Report f = Errors[lFrame.Name];
+                                        f.ErrorNumberCount++;
+                                        Errors[lFrame.Name] = f;
+                                    }
+                                }
+                            }
+                            lastIncrements[lFrame.Name] = lItemIncrement;
+                        }
+
+
+
+                        if ((i > buff.Length / MinPartOfReadSize || buff.Length - i < MinReadSize || reRead) && !isEnd)//возврат к перепрочтению
+                        {
+                            if (reRead)
+                                i -= minSize;
+                            stream.Position += i;
+                            i = 0;
+                            if (buff.Length > stream.Length - stream.Position)
+                            {
+                                buff = new byte[(int)(stream.Length - stream.Position)];
+                                isEnd = true;
+                            }
+                            else { buff = new byte[BuffSize]; }
+                        }
+                        if (isFind)
+                        {
+                            stream.Position += i;
+                            i = 0;
+
+                            int allSize = 0;
+                            foreach (Item item in lFrame.Items)
+                            {
+                                if (item.Size != null)
+                                    allSize += (int)item.Size;
+                            }
+
+                            byte[] bytes = new byte[allSize];
+                            stream.Read(bytes, 0, allSize);
+                            if (!crcChecker.CheckCRC16(bytes))
+                            {
+                                stream.Position -= (allSize - (int)lItemMarker.Size);
+                                Report f = Errors[lFrame.Name];
+                                f.ErrorCRCCount++;
+                                Errors[lFrame.Name] = f;
+                            }
+
+                            if (buff.Length > stream.Length - stream.Position)
+                            {
+                                buff = new byte[(int)(stream.Length - stream.Position)];
+                            }
+                            else { buff = new byte[BuffSize]; }
+
+
+                        }
+                        if (stream.Position - oldPosition > 10e+5)
+                        {
+                            Back.ReportProgress((int)(stream.Position * 100 / stream.Length), stream.Position);
+                            oldPosition = stream.Position;
+                            if (Back.CancellationPending)
+                            {
+                                result = false;
+                                Funcs.TotalCount(Errors);
+                                return result;
                             }
                         }
-                        stream.Position += i;
-                        i = 0;
-                        if (buff.Length > stream.Length - stream.Position)
-                        {
-                            buff = new byte[(int)(stream.Length - stream.Position)];
-                        }
-                        else { buff = new byte[BuffSize]; }
 
-                        foreach (Item item in lFrame.Items)
-                        {
-                            if (item.Name == "CRC")
-                            {
-                                byte[] lBuff = new byte[(int)item.Size];
-                                for (int j = 0; j < lBuff.Length; j++)
-                                { lBuff[j] = buff[i]; }
-                                i += lBuff.Length;
-
-                                //check crc
-                                break;
-                            }
-                        }
                     }
-
                 }
-
-                Console.WriteLine("end");
-                //Back.ReportProgress(0);
+                Funcs.TotalCount(Errors);
+                result = true;
             }
-
-
-
-
-                
-
-
-            //}
-            //catch(Exception ex) { LastException = ex; result = false; }
+            catch (Exception ex) { LastException = ex; result = false; }
             return result;
         }
 
@@ -269,9 +269,9 @@ namespace API
         public struct Report
         {
             //string FrameName;
-            public long FrameCount;
-            public long ErrorNumberCount;
-            public long ErrorCRCCount;
+            public uint FrameCount;
+            public uint ErrorNumberCount;
+            public uint ErrorCRCCount;
         }
     }
 }
