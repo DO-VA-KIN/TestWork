@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Windows.Controls;
-using System.Windows.Markup;
 using API;
 
 
@@ -25,7 +24,7 @@ namespace DataAnalyzer
         }
 
         private static bool IsStop { get; set; } = false;
-        private static BackgroundWorker Worker = new BackgroundWorker();
+        private static readonly BackgroundWorker Worker = new BackgroundWorker();
         private static string WayFile { get; set; }
 
         public Button BtnDataFile { get; set; }
@@ -92,14 +91,14 @@ namespace DataAnalyzer
 
         private void TableFill()
         {
-            Dictionary<string, FrameAnalize.Report> r = FrameAnalize.GetErrors();
+            ReportStruct[] r = FrameAnalize.GetErrors();
 
             var t = r.Select(x => new
             {
-                Название = x.Key,
-                Количество = x.Value.FrameCount,
-                Счётчик = x.Value.ErrorNumberCount,
-                CRC = x.Value.ErrorCRCCount
+                Название = x.FrameName,
+                Количество = x.FrameCount,
+                Счётчик = x.ErrorNumberCount,
+                CRC = x.ErrorCRCCount
             });
 
             DGFrames.HeadersVisibility = DataGridHeadersVisibility.All;

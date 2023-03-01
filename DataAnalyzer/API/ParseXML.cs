@@ -19,13 +19,13 @@ namespace API
         public static string WayXML { get; set; }
 
 
-        public  bool ReadXML()
+        public bool ReadXML()
         {
             if (!File.Exists(WayXML))
                 return false;
 
-            bool result = false;
-            List<Frame> frames = new List<Frame>(10);
+            bool result = true;
+            List<FrameStruct> frames = new List<FrameStruct>(10);
 
             try
             {
@@ -37,12 +37,12 @@ namespace API
                 {
                     if (node.LocalName == "frame")
                     {
-                        List<Item> items = new List<Item>(4);
+                        List<ItemStruct> items = new List<ItemStruct>(4);
                         foreach (XmlNode node2 in node.ChildNodes)
                         {
                             if (node2.LocalName == "item")
                             {
-                                Item item1 = new Item();
+                                ItemStruct item1 = new ItemStruct();
                                 foreach (XmlNode node3 in node2)
                                 {
                                     switch (node3.LocalName)
@@ -57,17 +57,24 @@ namespace API
                                             item1.Type = node3.InnerText;
                                             break;
                                         case "data":
-                                            item1.Data = 
+                                            item1.Data =
                                                 Enumerable.Range(0, node3.InnerText.Replace(" ", "").Length).Where(x => x % 2 == 0)
                                                 .Select(x => Convert.ToByte(node3.InnerText.Replace(" ", "").Substring(x, 2), 16)).ToArray();
                                             break;
                                     }
                                 }
+                                if (item1.Size == 0)
+                                {
+                                    result = false;
+                                    LastException = new Exception("Кадр: " + node.Attributes.GetNamedItem("name").Value +
+                                        "\n\nОписание поля кадра '" + item1.Name + "' не имеет размера.");
+                                    return result;
+                                }
                                 items.Add(item1);
                             }
                         }
 
-                        Frame frame = new Frame()
+                        FrameStruct frame = new FrameStruct()
                         {
                             Name = node.Attributes.GetNamedItem("name").Value,
                             Items = items.ToArray()
@@ -76,9 +83,15 @@ namespace API
                     }
                 }
                 FrameAnalize.Frames = frames.ToArray();
-                result = true;
             }
             catch (Exception ex) { LastException = ex; result = false; }
+
+            if (frames.Count == 0)
+            {
+                result = false;
+                LastException = new Exception("Файл: " + WayXML +
+                    "\n\nне содержит указанной кадровой структуры");
+            }
             return result;
         }
 

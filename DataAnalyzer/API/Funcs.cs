@@ -8,40 +8,76 @@ using static API.FrameAnalize;
 
 namespace API
 {
-    public class Funcs<T>
+    public class Funcs
     {
-        /// <summary>
-        /// Делает указанный элемент первым в списке
-        /// </summary>
-        /// <param name="list"></param>
-        /// <param name="a1"></param>
-        public static void MoveToFirst(ref List<T> list,  T a1)
+        public void TotalCount(ref ReportStruct[] reports)
         {
-            list[list.IndexOf(a1)] = list[0];
-            list[0] = a1;
-        }
-    }
-
-
-    public static class Funcs
-    {
-        public static void TotalCount(Dictionary<string, Report> d)
-        {
-            Report r = new Report()
+            ReportStruct r = new ReportStruct()
             {
+                FrameName = "Итого",
                 FrameCount = 0,
                 ErrorNumberCount = 0,
                 ErrorCRCCount = 0
             };
 
-            foreach (var item in d)
+            foreach (var item in reports)
             {
-                r.FrameCount += item.Value.FrameCount;
-                r.ErrorNumberCount += item.Value.ErrorNumberCount;
-                r.ErrorCRCCount += item.Value.ErrorCRCCount;
+                r.FrameCount += item.FrameCount;
+                r.ErrorNumberCount += item.ErrorNumberCount;
+                r.ErrorCRCCount += item.ErrorCRCCount;
             }
 
-            d.Add("Итого",r);
+            Array.Resize(ref reports, reports.Length + 1);
+            reports[reports.Length - 1] = r;
+        }
+
+
+    }
+
+
+
+    public class Check
+    {
+        private readonly CRC16 CRC = new CRC16();
+
+
+        public bool CheckPack(byte[] pack, ItemStruct[] items, uint? lastIncr, ref ReportStruct report)
+        {
+            bool errIncr = false;
+            bool errCRC = false;
+
+            int Pos = 0;
+            for (int p = 0; p < items.Length; p++)
+            {
+                if (items[p].Name == "Номер пакета")
+                {
+                    byte[] mark = new byte[items[p].Size];
+                    for (int j = 0; j < mark.Length; j++)
+                    { mark[j] = pack[Pos + j]; }
+
+                    if (lastIncr != null)
+                    {
+                        if (!CheckIncrement((uint)lastIncr, mark, 1))
+                        {
+                            errIncr = true;
+                        }
+                    }
+                }
+                if (items[p].Name == "CRC")
+                {
+                    if (!CRC.CheckCRC16(pack))
+                    {
+                        errCRC = true;
+                    }
+                }
+                Pos += items[p].Size;
+            }
+
+            report.FrameCount++;
+            if (errIncr) report.ErrorNumberCount++;
+            if (errCRC) report.ErrorCRCCount++;
+
+            return !errCRC;
         }
 
 
@@ -51,85 +87,34 @@ namespace API
         /// <param name="last">Предыдущий счётчик</param>
         /// <param name="next">Текущий счётчик</param>
         /// <param name="increment">Ожидаемое изменение счётчика</param>
-        /// <param name="reverse">Разворот байт</param>
         /// <returns>true - проверка успешна, false - ошибка счётчика</returns>
-        public static bool CheckIncrement(byte[] Last, byte[]Next, int increment, bool reverse)
+        private bool CheckIncrement(uint Last, byte[] Next, int increment)
         {
-            if (Last.Length != Next.Length) return false;
-
-            byte[] last = new  byte[Last.Length];
-            Array.Copy(Last, last, last.Length);
             byte[] next = new byte[Next.Length];
             Array.Copy(Next, next, next.Length);
+            Array.Reverse(next);
 
-            if (reverse)
-            {
-                Array.Reverse(last);
-                Array.Reverse(next);
-            }
-
-            if(last.Length < 4)
-            {
-                byte[] b = new byte[4];
-                int diff = b.Length - last.Length;
-
-                for (int i = 0; i < diff; i++)
-                    b[i] = 0;
-                for (int i = diff; i < b.Length; i++)
-                    b[i] = last[i - diff];
-            }    
-
-            if(last.Length == 4)
-            {
-                UInt32 vLast = BitConverter.ToUInt32(last, 0);
-                UInt32 vNext = BitConverter.ToUInt32(next, 0);
-
-                if ((vNext - vLast != increment) && !(vLast == Math.Pow(2, last.Length*8) - 1 && vNext == 0)) 
-                    return false;
-                else return true;
-            }
-
-            if (last.Length < 8)
-            {
-                byte[] b = new byte[8];
-                int diff = b.Length - last.Length;
-
-                for (int i = 0; i < diff; i++)
-                    b[i] = 0;
-                for (int i = diff; i < b.Length; i++)
-                    b[i] = last[i - diff];
-            }
-
-            if (last.Length == 8)
-            {
-                ulong vLast = BitConverter.ToUInt64(last, 0);
-                ulong vNext = BitConverter.ToUInt64(next, 0);
-
-                if ((vNext - vLast != (ulong)increment) && !(vLast == Math.Pow(2, last.Length * 8) - 1 && vNext == 0))
-                    return false;
-                else return true;
-            }
-
-            //счётчик более 8 байт маловероятен
-            return true;
+            UInt32 vNext = BitConverter.ToUInt32(next, 0);
+            if ((vNext - Last != increment) && !(Last == Math.Pow(2, 32) - 1 && vNext == 0))
+                return false;
+            else return true;
         }
-    }
 
 
-    //выбран табличный метод, т.к. в тз приоритет - скорость
-    public class CRC
-    {
-
-  //Name  : CRC-16 CCITT
-  //Poly  : 0x1021    x^16 + x^12 + x^5 + 1
-  //Init  : 0xFFFF
-  //Revert: false
-  //XorOut: 0x0000
-  //MaxLen: 4095(16*256) байт (32767 бит)
-
-        // при добавлении в пакет старший и младший байты меняются местами
-        private readonly ushort[] crc16Table = new ushort[]//32*8=256
+        //выбран табличный метод, т.к. в тз приоритет - скорость
+        private class CRC16
         {
+
+            //Name  : CRC-16 CCITT
+            //Poly  : 0x1021    x^16 + x^12 + x^5 + 1
+            //Init  : 0xFFFF
+            //Revert: false
+            //XorOut: 0x0000
+            //MaxLen: 4095(16*256) байт (32767 бит)
+
+            // при добавлении в пакет старший и младший байты меняются местами
+            private readonly ushort[] crc16Table = new ushort[]//32*8=256
+            {
     0x0000, 0x1021, 0x2042, 0x3063, 0x4084, 0x50A5, 0x60C6, 0x70E7,
     0x8108, 0x9129, 0xA14A, 0xB16B, 0xC18C, 0xD1AD, 0xE1CE, 0xF1EF,
     0x1231, 0x0210, 0x3273, 0x2252, 0x52B5, 0x4294, 0x72F7, 0x62D6,
@@ -162,19 +147,23 @@ namespace API
     0x7C26, 0x6C07, 0x5C64, 0x4C45, 0x3CA2, 0x2C83, 0x1CE0, 0x0CC1,
     0xEF1F, 0xFF3E, 0xCF5D, 0xDF7C, 0xAF9B, 0xBFBA, 0x8FD9, 0x9FF8,
     0x6E17, 0x7E36, 0x4E55, 0x5E74, 0x2E93, 0x3EB2, 0x0ED1, 0x1EF0
-        };
+            };
 
 
-        public bool CheckCRC16(byte[] bytes)
-        {
-            ushort crc = 0xFFFF;
-            for (var i = 0; i < bytes.Length; i++)
-                crc = (ushort)((crc << 8) ^ crc16Table[(crc >> 8) ^ bytes[i]]);
+            public bool CheckCRC16(byte[] bytes)
+            {
+                ushort crc = 0xFFFF;
+                for (var i = 0; i < bytes.Length; i++)
+                    crc = (ushort)((crc << 8) ^ crc16Table[(crc >> 8) ^ bytes[i]]);
 
-            if (crc == 0)
-                return true;
-            else return false;
+                if (crc == 0)
+                    return true;
+                else return false;
+            }
+
         }
-
     }
+
+
+
 }

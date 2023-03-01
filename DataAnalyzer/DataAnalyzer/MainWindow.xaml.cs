@@ -1,20 +1,8 @@
 ﻿using System;
 using Microsoft.Win32;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using DataAnalyzer.UserControls;
 
 namespace DataAnalyzer
@@ -135,10 +123,8 @@ namespace DataAnalyzer
             if (BackProcess.IsBusy()) 
             {
                 if (new DialogWindow("Прервать проверку?", 1).ShowDialog() == true)
-                {
                     BackProcess.CancelAsync();
-                    return;
-                }
+                return;
             }
 
             if (ofd.ShowDialog() == true)

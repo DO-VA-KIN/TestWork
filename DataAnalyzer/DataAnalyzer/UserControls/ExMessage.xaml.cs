@@ -48,7 +48,7 @@ namespace DataAnalyzer.UserControls
                 case "HResult":
                     TBText.Text = ThisException.HResult.ToString();
                     break;
-                case "ExMessage":
+                case "Message":
                     TBText.Text = ThisException.Message;
                     break;
                 case "Source":

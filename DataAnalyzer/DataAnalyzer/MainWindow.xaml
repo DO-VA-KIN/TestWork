@@ -7,7 +7,7 @@
         xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
         xmlns:UserControls="clr-namespace:DataAnalyzer.UserControls" x:Class="DataAnalyzer.MainWindow"
         mc:Ignorable="d"
-        Title="Анализатор данных (v.1.0)" Height="500" Width="800" Icon="/Icons/IMG_0200.PNG">
+        Title="Анализатор данных (v.1.1)" Height="500" Width="800" Icon="/Icons/IMG_0200.PNG">
 
     <Window.Background>
         <LinearGradientBrush EndPoint="0,1" StartPoint="0,0" Opacity="0.2">

@@ -1,0 +1,6 @@
+B:\Projects\дз\ТестЗадание\DataAnalyzer\API\bin\Release\API.dll
+B:\Projects\дз\ТестЗадание\DataAnalyzer\API\bin\Release\API.pdb
+B:\Projects\дз\ТестЗадание\DataAnalyzer\API\obj\Release\API.csproj.AssemblyReference.cache
+B:\Projects\дз\ТестЗадание\DataAnalyzer\API\obj\Release\API.csproj.CoreCompileInputs.cache
+B:\Projects\дз\ТестЗадание\DataAnalyzer\API\obj\Release\API.dll
+B:\Projects\дз\ТестЗадание\DataAnalyzer\API\obj\Release\API.pdb
