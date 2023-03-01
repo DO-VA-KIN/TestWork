@@ -129,6 +129,9 @@ namespace DataAnalyzer
 
             if (ofd.ShowDialog() == true)
             {
+                DGFrames.HeadersVisibility = DataGridHeadersVisibility.None;
+                DGFrames.ItemsSource = null;
+
                 BackProcess back = new BackProcess(UIPStatus, DGFrames, BtnDataFile);
                 if (!back.StartWork(ofd.FileName))
                 {

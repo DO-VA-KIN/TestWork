@@ -70,6 +70,13 @@ namespace API
                                         "\n\nОписание поля кадра '" + item1.Name + "' не имеет размера.");
                                     return result;
                                 }
+                                if (item1.Name == null)
+                                {
+                                    result = false;
+                                    LastException = new Exception("Кадр: " + node.Attributes.GetNamedItem("name").Value +
+                                        "\n\nОписание поля кадра не имеет имени.");
+                                    return result;
+                                }
                                 items.Add(item1);
                             }
                         }

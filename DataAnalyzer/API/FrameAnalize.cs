@@ -185,7 +185,9 @@ namespace API
 
                             Check check = new Check();
                             if(check.CheckPack(lBuff, Frames[index].Items, lastIncrements[index], ref errors[index]))
+
                                 i+= lSize;
+                            lastIncrements[index] = newIncr;
                         }
                     }
                 }

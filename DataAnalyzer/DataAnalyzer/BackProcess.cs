@@ -16,6 +16,7 @@ namespace DataAnalyzer
             StatusBar = statusBar;
             DGFrames = dgFrames;
             BtnDataFile = btnDataFile;
+            Worker = new BackgroundWorker();
             Worker.WorkerReportsProgress = true;
             Worker.WorkerSupportsCancellation = true;
             Worker.DoWork += Worker_DoWork;
@@ -24,7 +25,7 @@ namespace DataAnalyzer
         }
 
         private static bool IsStop { get; set; } = false;
-        private static readonly BackgroundWorker Worker = new BackgroundWorker();
+        private static BackgroundWorker Worker = new BackgroundWorker();
         private static string WayFile { get; set; }
 
         public Button BtnDataFile { get; set; }
